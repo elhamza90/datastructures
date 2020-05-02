@@ -8,7 +8,6 @@ type datatype string;
 
 type LinkedList struct {
 	head *Node
-	length int
 }
 
 type Node struct {
@@ -31,6 +30,19 @@ func (l *LinkedList) Print() {
 	}
 }
 
+func (l *LinkedList) Length() int {
+	if l.head == nil {
+		return 0;
+	}
+	current := l.head;
+	length := 1;
+	for current.next != nil {
+		current = current.next;
+		length++;
+	}
+	return length;
+}
+
 // Append adds a new Node in the end of the linked list.
 func (l *LinkedList) Append(newData datatype) {
 
@@ -48,7 +60,6 @@ func (l *LinkedList) Append(newData datatype) {
 		current.next = &node_to_be_added
 	}
 
-	l.length = l.length+1
 }
 
 // Contains searches for a value in each node of the linked list
