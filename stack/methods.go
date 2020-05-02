@@ -15,6 +15,10 @@ func New(elements ...datatype) Stack {
 	return s;
 }
 
+func (s Stack) isEmpty() bool {
+	return len(s) == 0;
+}
+
 func (s Stack) String() string {
 	str := "";
 	for _, v := range s {
@@ -27,12 +31,15 @@ func (s Stack) Length() int {
 	return len(s);
 }
 
-func (s *Stack) Append(data datatype) {
+func (s *Stack) Push(data datatype) {
 	*s = append(*s, data);
 }
 
-func (s *Stack) Pop() datatype {
+func (s *Stack) Pop() (datatype, bool) {
+	if (*s).isEmpty() {
+		return "", false;
+	}
 	last := (*s)[len(*s)-1];
 	*s = (*s)[:len(*s)-1];
-	return last;
+	return last, true;
 }

@@ -20,7 +20,7 @@ func TestLength(t *testing.T) {
 
 func TestAppend(t *testing.T) {
 	s:= New("1", "2");
-	s.Append("3");
+	s.Push("3");
 	if s.Length() != 3 {
 		t.Error("Error Appending Element to stack");
 	}
@@ -28,8 +28,14 @@ func TestAppend(t *testing.T) {
 
 func TestPop(t *testing.T) {
 	s := New("1", "2", "3", "4");
-	last := s.Pop();
-	if last != "4" || s.Length() != 3 {
+	last, ok := s.Pop();
+	if last != "4" || s.Length() != 3 || ok == false {
 		t.Error("Error in Poping from stack.")
+	}
+
+	s = New();
+	_, ok = s.Pop();
+	if ok == true {
+		t.Error("Error Poping empty stack returns ok is true")
 	}
 }
