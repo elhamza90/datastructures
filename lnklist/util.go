@@ -20,6 +20,7 @@ type node struct {
 	next *node
 }
 
+const errorVal datatype = "";
 // _________________________________
 
 // New creates a linked list with arbitrary number of initial values

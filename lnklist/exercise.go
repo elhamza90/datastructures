@@ -20,3 +20,27 @@ func (l LinkedList) Count(val datatype) (c int) {
 	}
 	return c;
 }
+
+func (l LinkedList) GetNth(n int) (val datatype, found bool) {
+	val = errorVal;
+	found = false;
+	if l.head != nil {
+		cur := l.head;
+		i := 0;
+		for {
+			if i == n {
+				val = cur.data;
+				found = true;
+				break;
+			} else {
+				if cur.next != nil {
+					cur = cur.next;
+					i++;
+				} else {
+					break;
+				}
+			}
+		}
+	}
+	return val, found;
+}
