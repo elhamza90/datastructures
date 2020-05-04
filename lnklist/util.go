@@ -1,33 +1,39 @@
 package lnklist
 
-import "fmt"
+// This file contains the Implementation of a Linked List
+// and its basic utility functions:
+// String(), Length(), Push(), Contains() and Pop()
+
+import "strings"
 
 // Type Definitions:
 
 type datatype string;
 
 type LinkedList struct {
-	head *Node
+	head *node
 }
 
-type Node struct {
+type node struct {
 	data datatype
-	next *Node
+	next *node
 }
 
-// Print prints the whole linked list X -> Y -> Z
-func (l *LinkedList) Print() {
-	current := l.head
+// String prints the whole linked list X -> Y -> Z
+func (l *LinkedList) String() (s string) {
+	current := l.head;
+	s = "";
 	for {
-		fmt.Printf("%s",current.data);
+		s += string(current.data);
 		if current.next == nil {
-			fmt.Printf("\n")
+			s += "\n";
 			break;
 		} else {
 			current = current.next;
-			fmt.Printf(" -> ")
+			s += " -> ";
 		}
 	}
+	return strings.TrimSpace(s);
 }
 
 func (l *LinkedList) Length() int {
@@ -43,10 +49,10 @@ func (l *LinkedList) Length() int {
 	return length;
 }
 
-// Append adds a new Node in the end of the linked list.
-func (l *LinkedList) Append(newData datatype) {
+// Append adds a new node in the end of the linked list.
+func (l *LinkedList) Push(newData datatype) {
 
-	node_to_be_added := Node {
+	node_to_be_added := node {
 			data: newData,
 	};
 
@@ -89,15 +95,15 @@ func (l *LinkedList) Contains(value datatype) bool{
 	return found;
 }
 
-// Pop returns the last Node and deletes it from the list
-func (l *LinkedList) Pop() *Node {
+// Pop returns the last node and deletes it from the list
+func (l *LinkedList) Pop() *node {
 	// If list is empty no point in searching.
 	if l.head == nil {
 		return nil;
 	}
 
-	var current *Node = l.head;
-	var prev  *Node = nil;
+	var current *node = l.head;
+	var prev  *node = nil;
 	for current.next != nil {
 		prev = current;
 		current = current.next;

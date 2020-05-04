@@ -2,30 +2,38 @@ package lnklist
 
 import "testing"
 
-func TestPrint(t *testing.T) {
+func TestString(t *testing.T) {
 
 	my_linked_list := LinkedList {
-		head : &Node {
+		head : &node {
 			data: "1",
-			next: &Node {
+			next: &node {
 				data: "2",
-				next: nil,
+				next: &node {
+					data: "3",
+					next: &node {
+						data: "4",
+					},
+				},
 			},
 		},
 	}
 
-	my_linked_list.Print()
+	res := my_linked_list.String();
+	if res != "1 -> 2 -> 3 -> 4" {
+		t.Error("Error Formating Linked List to String");
+	}
 }
 
 func TestLength(t *testing.T) {
 	my_linked_list := LinkedList {
-		head: &Node {
+		head: &node {
 			data: "1",
-			next: &Node {
+			next: &node {
 				data: "2",
-				next: &Node {
+				next: &node {
 					data: "3",
-					next: &Node {
+					next: &node {
 						data: "4",
 					},
 				},
@@ -38,29 +46,29 @@ func TestLength(t *testing.T) {
 	}
 }
 
-func TestAppend(t *testing.T) {
+func TestPush(t *testing.T) {
 
 	// Create the Linked List
 	my_linked_list := LinkedList {}
 
 	// Test append first element
-	my_linked_list.Append("Data of First Node")
+	my_linked_list.Push("Data of First node")
 	if my_linked_list.Length() != 1 {
-		t.Error("Error Appending first element. Length after appending is", my_linked_list.Length())
+		t.Error("Error Pushing first element. Length after appending is", my_linked_list.Length())
 	}
 
 	// Test append second element
-	my_linked_list.Append("Data of First Node");
+	my_linked_list.Push("Data of First node");
 	if my_linked_list.Length() != 2 {
-		t.Error("Error Appending second element. Length after appending is", my_linked_list.Length())
+		t.Error("Error Pushing second element. Length after appending is", my_linked_list.Length())
 	}
 }
 func TestContains(t *testing.T) {
 
 	my_linked_list := LinkedList {
-		head : &Node {
+		head : &node {
 			data: "1",
-			next: &Node {
+			next: &node {
 				data: "2",
 				next: nil,
 			},
@@ -78,11 +86,11 @@ func TestContains(t *testing.T) {
 
 func TestPop(t *testing.T) {
 	my_linked_list := LinkedList {
-		head : &Node {
+		head : &node {
 			data: "1",
-			next: &Node {
+			next: &node {
 				data: "2",
-				next: &Node {
+				next: &node {
 					data: "3",
 					next: nil,
 				},
