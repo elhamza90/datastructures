@@ -2,6 +2,13 @@ package lnklist
 
 import "testing"
 
+func TestNew(t *testing.T) {
+	l := New("1", "2", "3");
+	if l.head.data != "1" || l.head.next.data !="2" || l.head.next.next.data != "3" {
+		t.Error("Error creating new Linked list with initial values");
+	}
+}
+
 func TestString(t *testing.T) {
 
 	my_linked_list := LinkedList {

@@ -6,6 +6,7 @@ package lnklist
 
 import "strings"
 
+
 // Type Definitions:
 
 type datatype string;
@@ -17,6 +18,28 @@ type LinkedList struct {
 type node struct {
 	data datatype
 	next *node
+}
+
+// _________________________________
+
+// New creates a linked list with arbitrary number of initial values
+// Order of the values is taken into account.
+func New(vals ...datatype) (l *LinkedList) {
+	l = &LinkedList{};
+	var cur, n *node = nil, nil;
+	for _, v := range vals {
+		n = &node {
+			data: v,
+		};
+		if cur == nil {
+			cur = n;
+			l.head = n;
+		} else {
+			cur.next = n;
+			cur = cur.next;
+		}
+	}
+	return l;
 }
 
 // String prints the whole linked list X -> Y -> Z
