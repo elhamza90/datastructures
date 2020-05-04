@@ -1,6 +1,6 @@
 package lnklist
 
-
+// Count returns the number of times an element was found in the list
 func (l LinkedList) Count(val datatype) (c int) {
 	if l.head == nil {
 		return 0;
@@ -21,6 +21,7 @@ func (l LinkedList) Count(val datatype) (c int) {
 	return c;
 }
 
+// GetNth returns the value stored in the nth index position
 func (l LinkedList) GetNth(n int) (val datatype, found bool) {
 	val = errorVal;
 	found = false;
