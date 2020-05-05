@@ -16,3 +16,13 @@ func TestGetNth(t *testing.T) {
 		t.Error("Error Exercise GetNth")
 	}
 }
+
+func TestInsertNth(t *testing.T) {
+	l := New("1", "2", "3", "4", "5", "2", "4", "2");
+	oldLength := l.Length();
+	done := l.InsertNth("11", 3); // Insert "11" in the third index
+
+	if done != true || l.head.next.next.next.data != "11" || l.Length() != oldLength+1 {
+		t.Error("Error InsertNth ")
+	}	
+}

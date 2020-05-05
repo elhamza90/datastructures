@@ -45,3 +45,41 @@ func (l LinkedList) GetNth(n int) (val datatype, found bool) {
 	}
 	return val, found;
 }
+
+// InsertNth inserts a node in the nth index position
+func (l *LinkedList) InsertNth(val datatype, n int) (done bool) {
+	done = false;
+	if l.head != nil {
+
+		node_to_be_inserted := &node {
+			data: val,
+		}
+
+		cur := l.head;
+		i := 0;
+		for {
+			if cur == nil {
+				break;
+			} else {
+				if i == (n-1) {
+					if cur.next == nil {
+						cur.next = node_to_be_inserted;
+						done = true;
+						break;
+					} else {
+						node_to_be_inserted.next = cur.next;
+						cur.next = node_to_be_inserted;
+						done = true;
+						break;
+					}
+				} else {
+					cur = cur.next;
+					i++;
+				}
+			}
+		}
+
+	}
+
+	return done;
+}
