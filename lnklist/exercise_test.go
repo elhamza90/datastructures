@@ -35,3 +35,12 @@ func TestAppend(t *testing.T) {
 		t.Error("Error Exercise Append List");
 	}
 }
+
+func TestReverse(t *testing.T) {
+	l := New("1", "2", "3", "4");
+	l.Reverse();
+	if l.head.data != "4" || l.head.next.data != "3" || l.head.next.next.data != "2" || l.head.next.next.next.data != "1" {
+		t.Error("Error Exercise Reversing List");
+	}
+
+}

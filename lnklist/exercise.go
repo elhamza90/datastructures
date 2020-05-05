@@ -100,3 +100,21 @@ func (l *LinkedList) Append(l2 *LinkedList) {
 		}
 	}
 }
+
+// Reverse reverses a list
+func (l *LinkedList) Reverse() {
+	if l.head == nil || l.head.next == nil {
+		return;
+	}
+
+	var prev, tmp, cur *node = nil, nil, l.head;
+	for cur != nil{
+		if cur.next == nil {
+			l.head = cur;
+		}
+		tmp = cur.next;
+		cur.next = prev;
+		prev = cur;
+		cur = tmp;
+	}
+}
