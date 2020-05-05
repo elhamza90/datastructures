@@ -83,3 +83,20 @@ func (l *LinkedList) InsertNth(val datatype, n int) (done bool) {
 
 	return done;
 }
+
+// Append appends a list to the end of the calling list.
+func (l *LinkedList) Append(l2 *LinkedList) {
+	if l.head == nil {
+		l.head = l2.head;
+	} else {
+		cur := l.head;
+		for {
+			if cur.next == nil {
+				cur.next = l2.head;
+				break;
+			} else {
+				cur = cur.next;
+			}
+		}
+	}
+}

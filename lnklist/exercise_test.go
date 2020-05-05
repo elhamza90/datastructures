@@ -26,3 +26,12 @@ func TestInsertNth(t *testing.T) {
 		t.Error("Error InsertNth ")
 	}	
 }
+
+func TestAppend(t *testing.T) {
+	l := New("1", "2", "3", "4", "5");
+	l2 := New("6", "7", "8");
+	l.Append(l2);
+	if l.Length() != 8 {
+		t.Error("Error Exercise Append List");
+	}
+}
