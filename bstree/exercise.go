@@ -104,3 +104,47 @@ func (tr bst) Find(val int) (bool, string) {
 	}
 	return found, strings.TrimSpace(path);
 }
+
+
+// Delete deletes a node given its key
+func (tr *bst) Delete(k int) (done bool) {
+	done = true;
+	if tr.root != nil {
+		var prev, cur *node = nil, tr.root;
+		var isLeftChild bool = false;
+		for {
+			if cur.data == k {
+				// Case 1: Leaf
+				isLeftChild = k < prev.data;
+				if cur.left == nil && cur.right == nil {
+					if isLeftChild {
+						prev.left = nil;
+					} else {
+						prev.right = nil;
+					}
+				} else {
+					// Case 2: subtree
+				}
+				done = true;
+				break;
+			} else {
+				if k < cur.data {
+					if cur.left == nil {
+						break;
+					} else {
+						prev = cur;
+						cur = cur.left;
+					}
+				} else {
+					if cur.right == nil {
+						break;
+					} else {
+						prev = cur;
+						cur = cur.right;
+					}
+				}
+			}
+		}
+	}
+	return done;
+}

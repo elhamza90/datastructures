@@ -63,3 +63,21 @@ func TestFind(t *testing.T) {
 		t.Error("Found Element not existing in tree");
 	}
 }
+
+func TestDelete(t *testing.T) {
+	tr := New();
+	tr.Insert(8);
+	tr.Insert(3);
+	tr.Insert(10);
+	tr.Insert(1);
+	tr.Insert(6);
+	tr.Insert(4);
+	tr.Insert(5);
+	tr.Insert(14);
+	tr.Insert(13);
+	done := tr.Delete(13);
+	if done != true || tr.root.right.right.left != nil {
+		t.Error("Error Exercise Delete BST Leaf Node");
+	}
+	fmt.Println(tr.String())
+}
