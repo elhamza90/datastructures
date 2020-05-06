@@ -76,9 +76,13 @@ func TestFindInOrder(t *testing.T) {
 	tr.Insert(14);
 	tr.Insert(13);
 	tr.Insert(12);
-	fmt.Println(tr.String());
+	//fmt.Println(tr.String());
 	res := tr.root.right.findInOrder();
 	if res.data != 12 {
+		t.Error("Error Exercise FindInOrder BST");
+	}
+	res = tr.root.right.right.findInOrder();
+	if res != nil {
 		t.Error("Error Exercise FindInOrder BST");
 	}
 }
@@ -104,5 +108,8 @@ func TestDelete(t *testing.T) {
 	tr.Insert(15);
 	tr.Insert(30);
 	tr.Insert(23);
-	fmt.Println(tr.String())
+	done = tr.Delete(14);
+	if done != true || tr.root.right.right.data != 15 {
+		t.Error("Error Exercise Delete BST Node")
+	}
 }

@@ -116,8 +116,10 @@ func (n *node) findInOrder() (s *node) {
 			if cur.right != nil {
 				potentialSuccessor = cur.right;
 				successorDiff = potentialSuccessor.data - n.data;
-				cur = cur.right;
+			} else {
+				break;
 			}
+			cur = cur.right;
 		} else {
 			if cur.data - n.data < successorDiff {
 				potentialSuccessor = cur;
@@ -131,9 +133,9 @@ func (n *node) findInOrder() (s *node) {
 
 // Delete deletes a node given its key
 func (tr *bst) Delete(k int) (done bool) {
-	done = true;
+	done = false;
 	if tr.root != nil {
-		var prev, cur *node = nil, tr.root;
+		var prev, cur, successor *node = nil, tr.root, nil;
 		var isLeftChild bool = false;
 		for {
 			if cur.data == k {
@@ -147,7 +149,12 @@ func (tr *bst) Delete(k int) (done bool) {
 					}
 				} else {
 					// Case 2: subtree
-
+					successor = cur.findInOrder();
+					if successor != nil {
+						tmp := successor.data;
+						tr.Delete(successor.data);
+						cur.data = tmp;
+					}
 				}
 				done = true;
 				break;
