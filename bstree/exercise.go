@@ -105,6 +105,29 @@ func (tr bst) Find(val int) (bool, string) {
 	return found, strings.TrimSpace(path);
 }
 
+// findInOrder finds in-orde successor to the node in subtree.
+func (n *node) findInOrder() (s *node) {
+	s = nil;
+	var cur *node = n;
+	var potentialSuccessor *node;
+	var successorDiff int = 0;
+	for cur != nil {
+		if potentialSuccessor == nil {
+			if cur.right != nil {
+				potentialSuccessor = cur.right;
+				successorDiff = potentialSuccessor.data - n.data;
+				cur = cur.right;
+			}
+		} else {
+			if cur.data - n.data < successorDiff {
+				potentialSuccessor = cur;
+				successorDiff = cur.data - n.data;
+			}
+			cur = cur.left;
+		}
+	}
+	return potentialSuccessor;
+}
 
 // Delete deletes a node given its key
 func (tr *bst) Delete(k int) (done bool) {
@@ -114,9 +137,9 @@ func (tr *bst) Delete(k int) (done bool) {
 		var isLeftChild bool = false;
 		for {
 			if cur.data == k {
-				// Case 1: Leaf
 				isLeftChild = k < prev.data;
 				if cur.left == nil && cur.right == nil {
+					// Case 1: Leaf
 					if isLeftChild {
 						prev.left = nil;
 					} else {
@@ -124,6 +147,7 @@ func (tr *bst) Delete(k int) (done bool) {
 					}
 				} else {
 					// Case 2: subtree
+
 				}
 				done = true;
 				break;
