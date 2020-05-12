@@ -1,13 +1,15 @@
 package stack
 
-import "strings"
+import (
+	"strings"
+	"strconv"
+)
 //import "fmt"
 
-type datatype string
 
-type Stack []datatype
+type Stack []int
 
-func New(elements ...datatype) Stack {
+func New(elements ...int) Stack {
 	s := make(Stack, len(elements));
 	for i, v := range elements {
 		s[i] = v;
@@ -22,7 +24,7 @@ func (s Stack) isEmpty() bool {
 func (s Stack) String() string {
 	str := "";
 	for _, v := range s {
-		str += string(v) + " ";
+		str += strconv.Itoa(v) + " ";
 	}
 	return strings.TrimSpace(str)
 }
@@ -31,13 +33,13 @@ func (s Stack) Length() int {
 	return len(s);
 }
 
-func (s *Stack) Push(data datatype) {
+func (s *Stack) Push(data int) {
 	*s = append(*s, data);
 }
 
-func (s *Stack) Pop() (datatype, bool) {
+func (s *Stack) Pop() (int, bool) {
 	if (*s).isEmpty() {
-		return "", false;
+		return 0, false;
 	}
 	last := (*s)[len(*s)-1];
 	*s = (*s)[:len(*s)-1];
