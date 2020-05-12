@@ -6,11 +6,10 @@ import (
 )
 //import "fmt"
 
-type datatype int
 
-type Queue []datatype
+type Queue []int
 
-func New(elements ...datatype) Queue {
+func New(elements ...int) Queue {
 	q := make(Queue, len(elements));
 	for i, v := range elements {
 		q[i] = v;
@@ -25,7 +24,7 @@ func (q Queue) isEmpty() bool {
 func (q Queue) String() string {
 	str := "";
 	for _, v := range q {
-		str += strconv.Itoa(int(v)) + " ";
+		str += strconv.Itoa(v) + " ";
 	}
 	return strings.TrimSpace(str)
 }
@@ -34,11 +33,11 @@ func (q Queue) Length() int {
 	return len(q);
 }
 
-func (q *Queue) Push(data datatype) {
+func (q *Queue) Push(data int) {
 	*q = append(*q, data);
 }
 
-func (q *Queue) Pop() (datatype, bool) {
+func (q *Queue) Pop() (int, bool) {
 	if (*q).isEmpty() {
 		return 0, false;
 	}
