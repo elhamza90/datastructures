@@ -26,6 +26,13 @@ func TestAddEdge(t *testing.T) {
 	}
 }
 
+func TestNbrOfVertices(t *testing.T) {
+	g := make(graph, 3, 3);
+	if g.NbrOfVertices() != 3 {
+		t.Error("Error Graph number of vertices");
+	}
+}
+
 func TestString(t *testing.T) {
 	g := make(graph, 3, 3);
 	g.AddEdge(0, 2);

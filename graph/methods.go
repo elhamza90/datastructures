@@ -16,6 +16,10 @@ func (g graph) AddEdge(v1 int, v2 int) {
 	}
 }
 
+func (g graph) NbrOfVertices() int {
+	return len(g);
+}
+
 func (g graph) String() (s string) {
 	s = "";
 	for i, list := range g {
